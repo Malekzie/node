@@ -1,5 +1,7 @@
 const express = require('express');
 const profileRoute = express.Router();
+const profileController = require('../controllers/profileController');
+
 
 profileRoute.get('/profile', (req, res) => {
      if (req.session.loggedIn) {
@@ -9,5 +11,6 @@ profileRoute.get('/profile', (req, res) => {
      }
 })
 
+profileRoute.post('/register2', profileController.addProfile);
 
 module.exports = profileRoute;

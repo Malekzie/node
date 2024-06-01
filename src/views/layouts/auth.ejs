@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <link rel="stylesheet" href="/assets/css/styles.css">
-</head>
-<body>
-  <%- include('../partials/_authHeader') %>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+	</head>
+	<body>
+		<%- include('../partials/_authHeader') %>
+
+		<main> <%- body %> </main>
+
+		<%- include('../partials/_footer') %>
+    <%- script %>
+    <script>
+      document.querySelector('form').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent default form submission
+          const formData = new FormData(this);
+          for (const [name, value] of formData) {
+              console.log(`${name} = ${value}`); // Log form data
+          }
+          this.submit(); // Submit the form programmatically
+      });
+  </script>
   
-  <main class="w-full h-full">
-    <%- body %>
-  </main>
-  
-  <%- include('../partials/_footer') %>
-</body>
+	</body>
 </html>

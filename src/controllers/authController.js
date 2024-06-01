@@ -14,11 +14,10 @@ const register = async (req, res) => {
           confirmPassword: 'required|string|min:6|max:255|same:password'
      }
 
-     const { passes, errors} = validate(data, rules);
+     const { passes, errors } = validate(data, rules);
 
      if (passes) {
-          try{
-               
+          try {
                await authService.register(data);
                res.redirect(301, '/auth/login')
           } catch (error) {
@@ -26,26 +25,29 @@ const register = async (req, res) => {
                res.status(500).send('Registration failed. Please try again.');
           }
      } else {
-          res.status(400).json( errors );
+          res.status(400).json(errors);
      }
 }
+
 
 const login = async (req, res) => {
      const data = req.body;
      try {
-         const user = await userService.authenticate(data);
-         if (user) {
-             req.session.user = user;
-             req.session.loggedIn = true;
-             res.redirect(302, '/profile/profile');
-         } else {
-             res.status(401).render('auth/login', { error: 'Invalid email or password' });
-         }
+          const user = await userService.authenticate(data);
+          if (user) {
+               req.session.user = user;
+               req.session.loggedIn = true;
+               res.redirect(302, '/profile/profile');
+          } else {
+               res.status(401).render('auth/login', { error: 'Invalid email or password' });
+          }
      } catch (error) {
-         console.error("Login error:", error);
-         res.status(500).send('Internal Server Error');
+          console.error("Login error:", error);
+          res.status(500).send('Internal Server Error');
      }
- };
+};
+
+
 
 module.exports = {
      register,

@@ -1,10 +1,15 @@
-const { PrismaClient } = require('@prisma/client');
-const db = new PrismaClient();
+const db = require('./prismaInstance');
 
 const findUserByEmail = async (email) => {
      return await db.user.findUnique({
           where: { email: email },
           select: { email: true, password: true }
+      });
+}
+
+const findUserById = async (id) => {
+     return await db.user.findUnique({
+          where: { id: id }
       });
 }
 
@@ -21,7 +26,11 @@ const findUserProfiles = async () => {
 
 const createUser = async (data) => {
      return await db.user.create({
-         data
+         data,
+         select: {
+             id: true,
+             email: true
+         },
      });
 }
 
@@ -32,5 +41,6 @@ const createProfile = async (data) => {
 module.exports = {
      findUserByEmail,
      findUserProfiles,
+     findUserById,
      createUser
 }

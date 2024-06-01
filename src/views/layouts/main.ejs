@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <link rel="stylesheet" href="/assets/css/styles.css">
-</head>
-<body>
-  <%- include('../partials/_header') %>
-  
-  <main>
-    <%- body %>
-  </main>
-  
-  <%- include('../partials/_footer') %>
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title><%= title %></title>
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+	</head>
+	<body>
+		<%- include('../partials/_header') %>
 
-</body>
+		<main> <%- body %> </main>
+
+		<%- include('../partials/_footer') %> <%- script %>
+		<script>
+			// Add JavaScript to change the theme and send the selection to the server
+			document
+				.getElementById("theme-toggle")
+				.addEventListener("change", function () {
+					const theme = this.checked ? "luxury" : "retro";
+					fetch("/theme", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ theme }),
+					});
+					document.documentElement.setAttribute(
+						"data-theme",
+						theme
+					); // Update the theme immediately
+				});
+		</script>
+	</body>
 </html>

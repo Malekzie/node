@@ -1,0 +1,25 @@
+<!-- TODO: Set up tabs to go through profile and posts -->
+<!-- TODO: Mobile should be a navbar instead -->
+
+<!-- Mobile -->
+
+<!-- Desktop -->
+
+<div class="h-screen">
+     <div role="tablist" class="tabs tabs-lifted mx-[10vw] mt-[5vh]">
+       <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Profile Details" />
+       <div role="tabpanel" class="p-6 tab-content bg-base-100 border-base-300 rounded-box">
+          <%- include('../../partials/_profileContent1.ejs') %>
+     </div>
+     
+       <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Borrowed Tomes" checked />
+       <div role="tabpanel" class="p-6 tab-content bg-base-100 border-base-300 rounded-box">
+          <%- include('../../partials/_profileBorrowedTomes.ejs') %>
+     </div>
+     
+       <input type="radio" name="my_tabs_2" role="tab" class="tab" aria-label="Tab 3" />
+       <div role="tabpanel" class="p-6 tab-content bg-base-100 border-base-300 rounded-box">
+          <%- include('../../partials/_profileContent1.ejs') %>
+     </div>
+     </div>
+</div>

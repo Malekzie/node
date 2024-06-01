@@ -15,5 +15,20 @@
   </main>
   
   <%- include('../partials/_footer') %>
+  <%- script %>
+  <script>
+     // Add JavaScript to change the theme and send the selection to the server
+     document.getElementById('theme-toggle').addEventListener('change', function() {
+           const theme = this.checked ? 'luxury' : 'retro';
+           fetch('/theme', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({ theme })
+           });
+           document.documentElement.setAttribute('data-theme', theme); // Update the theme immediately
+       });
+ </script>
 </body>
 </html>

@@ -17,6 +17,7 @@ model User {
   id          String        @id @default(cuid())
   email       String        @unique
   password    String
+  theme       String        @default("luxury")
   UserProfile UserProfile[]
   Records     Records[]
 }
@@ -31,7 +32,7 @@ model UserProfile {
   province  String?
   postal    String?
   userId    String?
-  user      User?    @relation(fields: [userId], references: [id])
+  user      User?   @relation(fields: [userId], references: [id])
 }
 
 model Agents {
