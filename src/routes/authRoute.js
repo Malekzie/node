@@ -13,22 +13,9 @@ authRouter.get('/register', (req, res) => {
 });
 
 
-const provinces = [
-  "Alberta",
-  "British Columbia",
-  "Manitoba",
-  "New Brunswick",
-  "Newfoundland and Labrador",
-  "Nova Scotia",
-  "Ontario",
-  "Prince Edward Island",
-  "Quebec",
-  "Saskatchewan",
-];
-
 authRouter.get('/register2', (req, res) => {
     const theme = req.session.theme || 'default';
-    res.render('pages/auth/register2', { title: 'Register', layout: 'layouts/auth', theme, provinces });
+    res.render('pages/auth/register2', { title: 'Register', layout: 'layouts/auth', theme, });
 });
 
 

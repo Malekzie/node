@@ -2281,14 +2281,35 @@ input.tab:checked + .tab-content,
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
 .col-start-1 {
   grid-column-start: 1;
 }
 .col-start-2 {
   grid-column-start: 2;
 }
+.col-start-3 {
+  grid-column-start: 3;
+}
+.row-span-2 {
+  grid-row: span 2 / span 2;
+}
+.row-auto {
+  grid-row: auto;
+}
+.row-span-1 {
+  grid-row: span 1 / span 1;
+}
 .row-start-1 {
   grid-row-start: 1;
+}
+.row-start-3 {
+  grid-row-start: 3;
 }
 .m-\[10vw\] {
   margin: 10vw;
@@ -2394,6 +2415,9 @@ input.tab:checked + .tab-content,
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .flex-col {
   flex-direction: column;

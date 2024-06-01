@@ -1,0 +1,43 @@
+<form action="" method="post">
+     <section class="grid grid-cols-3 gap-4 grid-cols4">
+
+     <div class="max-w-sm form-control">
+          <label for="firstName">First Name</label>
+          <input type="text" placeholder="John" name="firstName" class="input input-bordered" required />
+     </div>
+     
+     <div class="max-w-sm form-control">
+          <label for="lastName">Last Name</label>
+          <input type="text" placeholder="Smith" name="lastName" class="input input-bordered" required />
+     </div>
+     
+     <div class="max-w-sm form-control">
+          <label for="postal">Postal Code</label>
+          <input type="text" placeholder="AAA AAA" name="postal" class="input input-bordered" required />
+     </div>
+     <div class="w-full col-span-3 form-control">
+          <label for="postal" class="text-center">Address</label>
+          <input type="text" placeholder="123 Main St" name="postal" class="input input-bordered" required />
+     </div>
+     <div class="max-w-sm row-start-3 form-control">
+          <label class="label">
+               <span class="label-text">Province</span>
+          </label>
+          <select name="province" class="w-full max-w-xs select select-bordered">
+               <% provinces.forEach(province => { %>)
+                    <option value="<%= province %>"><%= province %></option>
+               <% }) %>
+             </select>
+     </div>
+     <div class="max-w-sm row-start-3 form-control">
+          <label class="label">
+               <span class="label-text">City</span>
+          </label>
+          <select name="city" id="city" class="w-full max-w-xs select select-bordered">
+          </select>
+     </div>
+     
+</section>
+</form>
+
+<!-- TODO: Complete Fetch call -->
