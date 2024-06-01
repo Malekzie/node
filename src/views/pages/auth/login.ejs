@@ -1,0 +1,76 @@
+<!-- Mobile View -->
+<div class="mx-[10vw] h-full mt-[10vh] mb-32 md:hidden">
+     <div class="text-center">
+          <h1 class="text-2xl subpixel-antialiased font-bold">Nice to Meet you!</h1>
+          <h1 class="text-xs subpixel-antialiased">Enter your details to get started</h1>
+     </div>
+     
+     <form action="/auth/login" method="post">
+          <div class="flex flex-col gap-4">
+               <div class="form-control">
+                    <label for="label">
+                         <p class="label-text">Email</p>
+                    </label>
+                    <input type="email" name="email" class="input input-xs lg:input-sm input-bordered" required/>
+               </div>
+               <div class="form-control">
+                    <label for="label">
+                         <p class="label-text">Password</p>
+                    </label>
+                    <input type="password" name="password" class="input input-xs lg:input-sm input-bordered" required/>
+               </div>
+              
+               <button class="btn" type="submit">Login</button>
+          </div>
+     </form>
+
+     <div class="divider">OR</div>
+     <div class="text-center">
+          <p>Don't have an account?</p>
+          <a class="mt-2 btn" href="/auth/register">Make an account</a>
+     </div>
+     
+</div>
+
+<!-- Tablet View -->
+
+
+<!-- Desktop View -->
+
+<div class="invisible min-h-screen lg:visible hero bg-base-200">
+     <div class="flex-col hero-content lg:flex-row-reverse">
+       <div class="text-center lg:text-left">
+         <h1 class="text-5xl font-bold">Login now!</h1>
+         <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+       </div>
+       <div class="w-full max-w-sm shadow-2xl card shrink-0 bg-base-100">
+         <form class="card-body" action="/auth/login" method="post">
+           <div class="form-control">
+             <label class="label">
+               <span class="label-text">Email</span>
+             </label>
+             <input type="email" placeholder="email" name="email" class="input input-bordered" required />
+           </div>
+           <div class="form-control">
+             <label class="label">
+               <span class="label-text">Password</span>
+             </label>
+             <input type="password" placeholder="password" name="password" class="input input-bordered" required />
+             <label class="label">
+               <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+             </label>
+           </div>
+           <div class="mt-6 form-control">
+             <button class="btn btn-primary">Login</button>
+           </div>
+         </form>
+
+           <div class="card-footer">
+             <div class="divider">OR</div>
+             <div class="text-center">
+                <p>Don't have an account?</p>
+                <a href="/auth/register" class="my-4 btn">Register</a>
+             </div>
+       </div>
+     </div>
+   </div>
