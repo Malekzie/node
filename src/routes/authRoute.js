@@ -10,13 +10,6 @@ authRouter.get('/register', (req, res) => {
     res.render('pages/auth/register', { title: 'Register', layout: 'layouts/auth' });
 });
 
-authRouter.get('/profile', (req, res) => {
-    if (req.session.loggedIn) {
-        res.render('pages/auth/profile', { title: 'Profile' ,layout: 'layouts/main'});
-    } else {
-        res.redirect('/auth/login');
-    }
-});
 
 // Register and login routes
 authRouter.post('/register', authController.register);

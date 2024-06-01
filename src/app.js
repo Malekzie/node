@@ -49,6 +49,9 @@ app.get('/contact', (req, res) => {
 const authRouter = require('./routes/authRoute');
 app.use('/auth', authRouter);
 
+const profileRoute = require('./routes/profileRoute');
+app.use('/profile', profileRoute);
+
 app.all('*', (req, res) => {
     res.status(404).render('pages/error', { title: '404 - Not Found' });
 });
