@@ -1,0 +1,65 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+     <div class="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg">
+         <h1 class="mb-4 text-2xl font-bold">Edit Spell</h1>
+         <form action="/spells/<%= spell.id %>?_method=PUT" method="post">
+             <div class="mb-4 form-control">
+                 <label for="title" class="label">
+                     <span class="label-text">Title</span>
+                 </label>
+                 <input
+                     type="text"
+                     name="title"
+                     class="w-full input input-bordered"
+                     value="<%= spell.title %>"
+                     required />
+             </div>
+             <div class="mb-4 form-control">
+                 <label for="author" class="label">
+                     <span class="label-text">Author</span>
+                 </label>
+                 <input
+                     type="text"
+                     name="author"
+                     class="w-full input input-bordered"
+                     value="<%= spell.author %>"
+                     required />
+             </div>
+             <div class="mb-4 form-control">
+                 <label for="element" class="label">
+                     <span class="label-text">Element</span>
+                 </label>
+                 <select
+                     name="element"
+                     class="w-full select select-bordered">
+                     <% elements.forEach(element => { %>
+                         <option value="<%= element %>" <%= element === spell.element ? 'selected' : '' %>><%= element %></option>
+                     <% }) %>
+                 </select>
+             </div>
+             <div class="mb-4 form-control">
+                 <label for="powerLevel" class="label">
+                     <span class="label-text">Power Level</span>
+                 </label>
+                 <input
+                     type="number"
+                     name="powerLevel"
+                     class="w-full input input-bordered"
+                     value="<%= spell.powerLevel %>"
+                     required />
+             </div>
+             <div class="mb-4 form-control">
+                 <label for="description" class="label">
+                     <span class="label-text">Description</span>
+                 </label>
+                 <textarea
+                     name="description"
+                     class="w-full h-24 textarea textarea-bordered"
+                     required><%= spell.description %></textarea>
+             </div>
+             <button
+                 type="submit"
+                 class="w-full btn btn-primary">Update</button>
+         </form>
+     </div>
+ </div>
+ 

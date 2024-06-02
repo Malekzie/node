@@ -1,91 +1,74 @@
 <div class="flex justify-end w-full mt-2 mr-3">
-     <button class="btn" onclick="my_modal_2.showModal()"
-          >Create Book</button
-     >
+     <button class="btn" onclick="my_modal_2.showModal()">Create Spell</button>
      <dialog id="my_modal_2" class="modal">
-          <div class="modal-box">
-               <form method="dialog">
-                    <button
-                         class="absolute btn btn-sm btn-circle btn-ghost right-2 top-2"
-                         >✕</button
-                    >
-               </form>
-               <div>
-                    <h2 class="text-2xl font-bold">Create A Spell</h2>
-                    <p class="text-sm text-gray-600"
-                         >Exit with ESQ key or click outside</p
-                    >
-               </div>
-               <div class="w-full p-3 border border-black rounded-lg">
-                    <form action="" method="post">
-                         <div class="form-control">
-                              <label for="label">
-                                   <p class="label-text">Title</p>
-                              </label>
-                              <input
-                                   type="text"
-                                   name="bookTitle"
-                                   class="input input-xs lg:input-sm input-bordered"
-                                   required />
-                         </div>
-                         <div>
-                              <label for="label">
-                                   <p class="label-text">Author</p>
-                              </label>
-                              <input
-                                   type="text"
-                                   name="author"
-                                   class="input input-xs lg:input-sm input-bordered"
-                                   required />
-                         </div>
-                         <div class="form-control">
-                              <label for="label">
-                                   <p class="label-text"
-                                        >Element</p
-                                   >
-                              </label>
-                              <select
-                                   name="bookElement"
-                                   class="select select-bordered select-md">
-                                   <% elements.forEach(element => {
-                                   %>
-                                   <option value="<%= element %>"
-                                        ><%= element %></option
-                                   >
-                                   <% }) %>
-                              </select>
-                         </div>
-                         <div class="form-control">
-                              <label for="label">
-                                   <p class="label-text"
-                                        >Power Level</p
-                                   >
-                              </label>
-                              <input
-                                   type="number"
-                                   name="bookPower"
-                                   class="input input-xs lg:input-sm input-bordered"
-                                   required />
-                         </div>
-
-                         <div class="form-control">
-                              <label for="label">
-                                   <p class="label-text"
-                                        >Description</p
-                                   >
-                              </label>
-                              <textarea
-                                   name="bookDescription"
-                                   class="h-24 textarea textarea-bordered"
-                                   required></textarea>
-                         </div>
-                         <button
-                              type="submit"
-                              class="w-full mt-2 btn btn-primary"
-                              >Submit</button
-                         >
-                    </form>
-               </div>
-          </div>
+         <div class="modal-box">
+             <form method="dialog">
+                 <button class="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">✕</button>
+             </form>
+             <div>
+                 <h2 class="text-2xl font-bold">Create A Spell</h2>
+                 <p class="text-sm text-gray-600">Exit with ESC key or click outside</p>
+             </div>
+             <div class="w-full p-3 border border-black rounded-lg">
+                 <form action="/spells/create" method="post">
+                     <div class="form-control">
+                         <label for="label">
+                             <p class="label-text">Title</p>
+                         </label>
+                         <input
+                             type="text"
+                             name="title"
+                             class="input input-xs lg:input-sm input-bordered"
+                             required />
+                     </div>
+                     <div>
+                         <label for="label">
+                             <p class="label-text">Author</p>
+                         </label>
+                         <input
+                             type="text"
+                             name="author"
+                             class="input input-xs lg:input-sm input-bordered"
+                             required />
+                     </div>
+                     <div class="form-control">
+                         <label for="label">
+                             <p class="label-text">Element</p>
+                         </label>
+                         <select
+                             name="element"
+                             class="select select-bordered select-md">
+                             <% elements.forEach(element => { %>
+                                 <option value="<%= element %>"><%= element %></option>
+                             <% }) %>
+                         </select>
+                     </div>
+                     <div class="form-control">
+                         <label for="label">
+                             <p class="label-text">Power Level</p>
+                         </label>
+                         <input
+                             type="number"
+                             name="powerLevel"
+                             class="input input-xs lg:input-sm input-bordered"
+                             required />
+                     </div>
+ 
+                     <div class="form-control">
+                         <label for="label">
+                             <p class="label-text">Description</p>
+                         </label>
+                         <textarea
+                             name="description"
+                             class="h-24 textarea textarea-bordered"
+                             required></textarea>
+                     </div>
+                     <button
+                         type="submit"
+                         class="w-full mt-2 btn btn-primary">Submit</button>
+                 </form>
+             </div>
+         </div>
      </dialog>
-</div>
+ </div>
+ 
