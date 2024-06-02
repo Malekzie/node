@@ -9,6 +9,7 @@ const createSpell = async (data) => {
             element: data.element,
             author: data.author,
             userId: data.userId,
+            image: data.image,
         },
     });
 };
