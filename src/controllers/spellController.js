@@ -1,4 +1,5 @@
 const spellService = require('../services/spellService');
+const spellRepository = require('../repositories/spellRepository');
 
 const createSpell = async (req, res) => {
     try {
@@ -45,32 +46,38 @@ const updateSpell = async (req, res) => {
     }
 };
 
+// Controller method to delete a spell
 const deleteSpell = async (req, res) => {
+    const spellId = req.params.id;
+    console.log(`Attempting to delete spell with ID: ${spellId}`);
+
     try {
-        await spellService.deleteSpell(req.params.id, req.userId);
-        res.status(204).send();
+        await spellRepository.deleteSpellById(spellId);
+        console.log(`Successfully deleted spell with ID: ${spellId}`);
+        res.redirect('/profile/profile'); // Redirect to the profile page after deletion
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Error deleting spell:', error);
+        res.status(500).json({ message: 'Error deleting spell' });
     }
 };
 
 const editSpell = async (req, res) => {
-     try {
-         const spell = await spellService.getSpellById(req.params.id);
-         if (!spell) {
-             throw new Error('Spell not found');
-         }
-         const elements = [
-             'Fire', 'Water', 'Air', 'Earth', 'Light', 'Darkness', 
-             'Electricity', 'Ice', 'Metal', 'Nature', 'Poison', 
-             'Shadow', 'Sound', 'Time'
-         ];
-         res.render('pages/editSpell', { title: 'Edit Spell', spell, elements });
-     } catch (error) {
-         console.error('Error fetching spell for editing:', error); // Log the error details
-         res.status(500).send('Error fetching spell for editing');
-     }
- };
+    try {
+        const spell = await spellService.getSpellById(req.params.id);
+        if (!spell) {
+            throw new Error('Spell not found');
+        }
+        const elements = [
+            'Fire', 'Water', 'Air', 'Earth', 'Light', 'Darkness',
+            'Electricity', 'Ice', 'Metal', 'Nature', 'Poison',
+            'Shadow', 'Sound', 'Time'
+        ];
+        res.render('pages/editSpell', { title: 'Edit Spell', spell, elements });
+    } catch (error) {
+        console.error('Error fetching spell for editing:', error); // Log the error details
+        res.status(500).send('Error fetching spell for editing');
+    }
+};
 
 module.exports = {
     createSpell,

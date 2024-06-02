@@ -42,11 +42,17 @@ const getSpellById = async (id) => {
      });
  };
 
- const deleteSpell = async (id) => {
-     return await db.spellBook.delete({
-         where: { id: parseInt(id, 10) }, // Ensure id is an integer
-     });
- };
+// Repository method to delete a spell by ID
+const deleteSpellById = async (id) => {
+    try {
+        return await db.spellBook.delete({
+            where: { id: parseInt(id) }
+        });
+    } catch (error) {
+        console.error('Error in deleteSpellById:', error);
+        throw error;
+    }
+};
 
 module.exports = {
     createSpell,
@@ -54,5 +60,5 @@ module.exports = {
     getAllSpells,
     getSpellById,
     updateSpell,
-    deleteSpell,
+    deleteSpellById,
 };
