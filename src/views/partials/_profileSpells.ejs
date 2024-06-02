@@ -1,13 +1,24 @@
-<% spells.forEach(spell => { %>
-     <div>
-         <h2><%= spell.title %></h2>
-         <p><%= spell.description %></p>
-         <p>Power Level: <%= spell.powerLevel %></p>
-         <p>Element: <%= spell.element %></p>
-         <a href="/spells/edit/<%= spell.id %>">Edit</a>
-         <form action="/spells/delete/<%= spell.id %>" method="post">
-             <button type="submit">Delete</button>
-         </form>
-     </div>
- <% }) %>
- 
+<div class="flex flex-wrap gap-3">
+    <% spells.forEach(spell => { %>
+        <div class="shadow-xl card card-compact w-96 bg-base-300">
+            <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+            <div class="card-body">
+                <h2 class="card-title"><%= spell.title %></h2>
+                <div class="p-2 rounded-lg bg-base-100">
+                    <p>Element: <%= spell.element %></p>
+                    <p>Power Level: <%= spell.powerLevel %></p>
+                    <div class="p-2 text-center border rounded-lg">
+                        <p><%= spell.description %></p>
+                    </div>
+                </div>
+                <div class="flex justify-evenly">
+                    <a href="/spells/edit/<%= spell.id %>" class="btn btn-secondary">Edit</a>
+                    <form action="/spells/delete/<%= spell.id %>" method="post">
+                        <button type="submit" class="btn btn-error">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>

@@ -8,7 +8,6 @@ const findUserByEmail = async (email) => {
 }
 
 const findUserById = async (id) => {
-    console.log("User ID in findUserById:", id); // Debugging info
     return await db.user.findUnique({
         where: { id: id },
     });

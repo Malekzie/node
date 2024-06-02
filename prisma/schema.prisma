@@ -22,6 +22,14 @@ model User {
   Spells      SpellBook[]   @relation("UserSpells")
 }
 
+model Session {
+  id String @id @default(cuid())
+  expiresAt DateTime
+  sessionData String
+
+  @@index([expiresAt], name: "expiresAt")
+}
+
 model UserProfile {
   id        String  @id @default(cuid())
   firstName String?

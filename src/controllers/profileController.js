@@ -36,6 +36,8 @@ const addProfile = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
+    const session = req.session;
+    console.log("Session:", session);
     const userId = req.userId; // Use JWT extracted userId
     const profile = await profileRepository.findUserProfileByUserId(userId);
     const spells = await spellService.getUserSpells(userId);
@@ -51,6 +53,10 @@ const getProfile = async (req, res) => {
         "Quebec",
         "Saskatchewan",
     ];
+
+    if (!req.session.loggedIn){
+        req.session.loggedIn = true;
+    }
 
     res.render('pages/profile/profile', { title: 'Profile', layout: 'layouts/profile', profile, spells, provinces });
 };

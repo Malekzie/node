@@ -14,7 +14,6 @@ const authenticate = async (data) => {
 };
 
 const populateProfile = async (data, userId) => {
-    console.log("User ID in populateProfile:", userId); // Debugging info
     const existingProfile = await profileRepository.findUserProfileByUserId(userId);
 
     if (existingProfile) {

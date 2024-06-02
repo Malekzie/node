@@ -62,9 +62,11 @@ const elements = [
     'Electricity', 'Ice', 'Metal', 'Nature', 'Poison',
     'Shadow', 'Sound', 'Time'
 ];
+
 app.get('/archives', saveTheme, async (req, res) => { // Ensure saveTheme is called
     const spells = await spellService.getAllSpells();
     const loggedIn = !!req.session.userId;
+    console.log(req.session)
     res.render('pages/archives', { title: 'Archives', theme: res.locals.theme, spells, elements, loggedIn });
 });
 
