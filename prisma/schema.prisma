@@ -19,7 +19,7 @@ model User {
   password    String
   theme       String        @default("luxury")
   UserProfile UserProfile[]
-  Spells      SpellBook[]
+  Spells      SpellBook[]   @relation("UserSpells")
 }
 
 model UserProfile {
@@ -32,7 +32,7 @@ model UserProfile {
   province  String?
   postal    String?
   userId    String
-  user      User   @relation(fields: [userId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
 }
 
 model Agents {
@@ -45,23 +45,21 @@ model Agents {
   address   String
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
-  Spells    SpellBook[]
+  Spells    SpellBook[] @relation("AgentSpells")
 }
 
 model SpellBook {
-  id          Int     @id @default(autoincrement())
-  image       String?
-  author      String
+  id          Int      @id @default(autoincrement())
   title       String
   description String
   powerLevel  Int
   element     String
+  author      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  // Relationships
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String?
-  agentId   String?
-  agents    Agents?  @relation(fields: [agentId], references: [id])
-  users     User?    @relation(fields: [userId], references: [id])
+  userId  String?
+  user    User?   @relation("UserSpells", fields: [userId], references: [id])
+  agentId String?
+  agent   Agents? @relation("AgentSpells", fields: [agentId], references: [id])
 }
