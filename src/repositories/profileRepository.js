@@ -1,5 +1,11 @@
 const db = require('./prismaInstance');
 
+const findUserProfileByUserId = async (userId) => {
+     return await db.userProfile.findFirst({
+          where: { userId: userId },
+     });
+};
+
 const findProfileByName = async (name) => {
      return await db.userProfile.findUnique({
           where: { name: name }
@@ -27,16 +33,40 @@ const createUserProfile = async (data) => {
                city: data.city,
                province: data.province,
                phone: data.phone,
-               postal: data.postal
+               postal: data.postal,
+               user: {
+                    connect: {
+                         id: data.userId
+                    }
+               }
           }
      });
-}
+};
 
-
+const updateUserProfile = async (data, userId) => {
+     const profile = await findUserProfileByUserId(userId);
+     if (profile) {
+          return await db.userProfile.update({
+               where: { id: profile.id },
+               data: {
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    city: data.city,
+                    province: data.province,
+                    phone: data.phone,
+                    postal: data.postal,
+               }
+          });
+     }
+     throw new Error('Profile not found');
+};
 
 module.exports = {
+     findUserProfileByUserId,
      findProfileByName,
      findProfilesByProvince,
      findProfilesByCity,
-     createUserProfile
+     createUserProfile,
+     updateUserProfile,
 }

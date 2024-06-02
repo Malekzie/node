@@ -1,14 +1,19 @@
 <main class="h-screen">
-     <%- include('../partials/_archiveModal') %>
+     <% if (loggedIn) { %>
+         <%- include('../partials/_archiveModal') %>
+     <% } %>
      <section>
           <div class="flex justify-center">
                <h1 class="text-4xl font-bold">Archives</h1>
           </div>
-
-          
-          <div>
-               
-          </div>
+          <% spells.forEach(spell => { %>
+               <div>
+                   <h2><%= spell.title %></h2>
+                   <p><%= spell.description %></p>
+                   <p>Power Level: <%= spell.powerLevel %></p>
+                   <p>Element: <%= spell.element %></p>
+                   <p>Author: <%= spell.author %></p>
+               </div>
+           <% }) %>
      </section>
-     
 </main>

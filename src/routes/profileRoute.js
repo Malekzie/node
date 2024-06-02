@@ -1,28 +1,12 @@
 const express = require('express');
 const profileRoute = express.Router();
+const authenticateJWT = require('../middleware/jwtMW');
 const profileController = require('../controllers/profileController');
 
-const provinces = [
-     "Alberta",
-     "British Columbia",
-     "Manitoba",
-     "New Brunswick",
-     "Newfoundland and Labrador",
-     "Nova Scotia",
-     "Ontario",
-     "Prince Edward Island",
-     "Quebec",
-     "Saskatchewan",
-];
 
-profileRoute.get('/profile', (req, res) => {
-     if (req.session.loggedIn) {
-          res.render('pages/profile/profile', { title: 'Profile' ,layout: 'layouts/profile', provinces});
-     } else {
-          res.redirect('/auth/login');
-     }
-})
+profileRoute.get('/profile', authenticateJWT, profileController.getProfile);
 
-profileRoute.post('/register2', profileController.addProfile);
+
+profileRoute.post('/update', authenticateJWT, profileController.addProfile);
 
 module.exports = profileRoute;
