@@ -1,10 +1,12 @@
 const spellRepository = require('../repositories/spellRepository');
+const { getRandomImage } = require('../utils/imageUtil');
 
 const createSpell = async (data, userId) => {
     const spellData = {
         ...data,
         userId: userId,
         author: data.author || 'Unknown',
+        image: getRandomImage(data.element)
     };
     return await spellRepository.createSpell(spellData);
 };

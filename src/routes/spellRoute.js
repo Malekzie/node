@@ -10,4 +10,7 @@ spellRoute.get('/:id', jwtMW, spellController.getSpellById);
 spellRoute.put('/:id', jwtMW, spellController.updateSpell);
 spellRoute.delete('/:id', jwtMW, spellController.deleteSpell); // endpoint to delete spell
 spellRoute.get('/edit/:id', jwtMW, spellController.editSpell); // Route to edit a spell
+
+
+
 module.exports = spellRoute;

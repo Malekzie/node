@@ -10,7 +10,7 @@
 		<% spells.forEach(spell => { %>
 			<div class="shadow-xl card w-96 bg-base-100">
 				<figure class="px-10 pt-10">
-                              <img src="<%= spell.image %>" alt="Spell Image" class="rounded-xl" />
+                              <img src="<%= spell.image %>" alt="<%= spell.element %> Image" class="rounded-xl" />
                          </figure>
 				<div class="items-center text-center card-body">
 					<h2 class="card-title"><%= spell.title %></h2>

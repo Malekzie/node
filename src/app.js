@@ -20,7 +20,7 @@ app.set("layout extractScripts", true);
 
 // Middleware to serve static files
 app.use('/assets', express.static(path.join(__dirname, '../public/assets')));
-app.use('/img', express.static(path.join(__dirname, '../public/assets/images'), { extensions: ['jpg', 'png', 'gif'] }));
+app.use('/img', express.static(path.join(__dirname, '../public/assets/images'), { extensions: ['jpg', 'png', 'gif', 'webp'] }));
 
 // Middleware to parse request body
 app.use(express.json());

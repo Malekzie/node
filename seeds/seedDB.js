@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const db = new PrismaClient();
+const { getRandomImage } = require('../src/utils/imageUtil');
 
 async function main() {
      // Create agents
@@ -61,55 +62,61 @@ async function main() {
  
      // Create spell books for each agent
      const spellBooksData = [
-         {
-             title: 'Scroll of Wisdom',
-             description: 'A scroll containing vast knowledge and wisdom.',
-             powerLevel: 5,
-             element: 'Air',
-             author: 'Eldra the Wise',
-             agentId: createdAgents.find(agent => agent.email === 'eldra.wise@arcane-archives.com').id
-         },
-         {
-             title: 'Illusionary Scroll',
-             description: 'A scroll that creates vivid illusions.',
-             powerLevel: 4,
-             element: 'Light',
-             author: 'Lyra the Illusionist',
-             agentId: createdAgents.find(agent => agent.email === 'lyra.illusionist@arcane-archives.com').id
-         },
-         {
-             title: 'Seeker’s Scroll',
-             description: 'A scroll that enhances search and discovery.',
-             powerLevel: 3,
-             element: 'Water',
-             author: 'Seraphina the Seeker',
-             agentId: createdAgents.find(agent => agent.email === 'seraphina.seeker@arcane-archives.com').id
-         },
-         {
-             title: 'Enchanter’s Manual',
-             description: 'A manual of powerful enchantments.',
-             powerLevel: 5,
-             element: 'Fire',
-             author: 'Thalor the Enchanter',
-             agentId: createdAgents.find(agent => agent.email === 'thalor.enchanter@arcane-archives.com').id
-         },
-         {
-             title: 'Scribe’s Codex',
-             description: 'A codex of ancient lore and scripts.',
-             powerLevel: 4,
-             element: 'Earth',
-             author: 'Faelan the Scribe',
-             agentId: createdAgents.find(agent => agent.email === 'faelan.scribe@arcane-archives.com').id
-         },
-         {
-             title: 'Guardian’s Tome',
-             description: 'A tome containing protective spells.',
-             powerLevel: 5,
-             element: 'Stone',
-             author: 'Gorim the Guardian',
-             agentId: createdAgents.find(agent => agent.email === 'gorim.guardian@arcane-archives.com').id
-         }
-     ];
+        {
+            title: 'Scroll of Wisdom',
+            description: 'A scroll containing vast knowledge and wisdom.',
+            powerLevel: 5,
+            element: 'Air',
+            author: 'Eldra the Wise',
+            agentId: createdAgents.find(agent => agent.email === 'eldra.wise@arcane-archives.com').id,
+            image: getRandomImage('Air')
+        },
+        {
+            title: 'Illusionary Scroll',
+            description: 'A scroll that creates vivid illusions.',
+            powerLevel: 4,
+            element: 'Light',
+            author: 'Lyra the Illusionist',
+            agentId: createdAgents.find(agent => agent.email === 'lyra.illusionist@arcane-archives.com').id,
+            image: getRandomImage('Light')
+        },
+        {
+            title: 'Seeker’s Scroll',
+            description: 'A scroll that enhances search and discovery.',
+            powerLevel: 3,
+            element: 'Water',
+            author: 'Seraphina the Seeker',
+            agentId: createdAgents.find(agent => agent.email === 'seraphina.seeker@arcane-archives.com').id,
+            image: getRandomImage('Water')
+        },
+        {
+            title: 'Enchanter’s Manual',
+            description: 'A manual of powerful enchantments.',
+            powerLevel: 5,
+            element: 'Fire',
+            author: 'Thalor the Enchanter',
+            agentId: createdAgents.find(agent => agent.email === 'thalor.enchanter@arcane-archives.com').id,
+            image: getRandomImage('Fire')
+        },
+        {
+            title: 'Scribe’s Codex',
+            description: 'A codex of ancient lore and scripts.',
+            powerLevel: 4,
+            element: 'Earth',
+            author: 'Faelan the Scribe',
+            agentId: createdAgents.find(agent => agent.email === 'faelan.scribe@arcane-archives.com').id,
+            image: getRandomImage('Earth')
+        },
+        {
+            title: 'Guardian’s Tome',
+            description: 'A tome containing protective spells.',
+            powerLevel: 5,
+            element: 'Nature',
+            author: 'Gorim the Guardian',
+            agentId: createdAgents.find(agent => agent.email === 'gorim.guardian@arcane-archives.com').id,
+            image: getRandomImage('Nature')
+        }
+    ];
  
      await db.spellBook.createMany({ data: spellBooksData });
  }
