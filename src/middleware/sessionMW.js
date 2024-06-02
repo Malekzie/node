@@ -9,31 +9,31 @@ const sessionMW = session({
 });
 
 const loggedInMW = (req, res, next) => {
-     res.locals.loggedIn = req.session.loggedIn || false;
-     next();
- };
+    res.locals.loggedIn = !!req.session.userId; // Update this line to use userId
+    next();
+};
 
 const saveTheme = async (req, res, next) => {
-     if (req.session.userId){
-          const user = await findUserById(req.session.userId);
-          if (user){
-               res.locals.theme = user.theme;
-          }
+     if (req.session.userId) {
+         const user = await findUserById(req.session.userId);
+         if (user) {
+             req.session.theme = user.theme;
+         }
      }
      res.locals.theme = req.session.theme || req.cookies.theme || 'retro';
      next();
  };
 
- const ensureAuthenticated = (req, res, next) => {
-     if (req.session.userId) {
-          return next();
-     }
-     res.redirect('/auth/login');
- }
+const ensureAuthenticated = (req, res, next) => {
+    if (req.session.userId) {
+        return next();
+    }
+    res.redirect('/auth/login');
+};
 
-module.exports ={
-     sessionMW,
-     loggedInMW,
-     saveTheme,
-     ensureAuthenticated
-}
+module.exports = {
+    sessionMW,
+    loggedInMW,
+    saveTheme,
+    ensureAuthenticated
+};

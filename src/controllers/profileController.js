@@ -1,55 +1,63 @@
 const validate = require('../utils/validationUtil');
 const userService = require('../services/userService');
+const profileRepository = require('../repositories/profileRepository');
+const spellService = require('../services/spellService');
 
-
-// Get Spells based on userId
-const getProfileSpells = async (req, res) => {
-     const userId = req.session.userId;
-
-     try {
-          const spells = await spellsService.findSpells();
-           res.render('pages/profile/profile', { spells });
-     } catch (error) {
-          console.error(error);
-          res.status(500).send('Error fetching profile');
-      }
-}
-
-
+// Adding a profile
 const addProfile = async (req, res) => {
-     const data = req.body;
-     const id = req.session.userId;
-     console.log("Received data:", data);
-     console.log("Received id:", id)
+    const data = req.body;
+    const userId = req.userId; // Use JWT extracted userId
+    console.log("Received data:", data);
+    console.log("Received user ID:", userId); // Debugging info
 
-     const rules = {
-          firstName: 'required|string',
-          lastName: 'required|string',
-          address: 'required|string',
-          city: 'required|string',
-          province: 'required|string',
-          postal: 'required|string',
-          phone: 'required|string',
-     }
+    const rules = {
+        firstName: 'required|string',
+        lastName: 'required|string',
+        address: 'required|string',
+        city: 'required|string',
+        province: 'required|string',
+        postal: 'required|string',
+        phone: 'required|string',
+    };
 
-     const { passes, errors} = validate(data, rules);
+    const { passes, errors } = validate(data, rules);
 
-     if (passes) {
-          try {
-               await userService.populateProfile(data, id);
-               res.redirect(301, '/auth/login');
-          } catch (error) {
-               console.error("Registration error:", error); // Log the error details
-               res.status(500).send('Registration failed. Please try again.');
-          }
-     } else {
-          res.status(400).json(errors);
-     }
-}
+    if (passes) {
+        try {
+            await userService.populateProfile(data, userId); // Pass userId from JWT
+            res.redirect('/profile/profile');
+        } catch (error) {
+            console.error("Profile update error:", error);
+            res.status(500).send('Profile update failed. Please try again.');
+        }
+    } else {
+        res.status(400).json(errors);
+    }
+};
+
+const getProfile = async (req, res) => {
+    const userId = req.userId; // Use JWT extracted userId
+    const profile = await profileRepository.findUserProfileByUserId(userId);
+    const spells = await spellService.getUserSpells(userId);
+    const provinces = [
+        "Alberta",
+        "British Columbia",
+        "Manitoba",
+        "New Brunswick",
+        "Newfoundland and Labrador",
+        "Nova Scotia",
+        "Ontario",
+        "Prince Edward Island",
+        "Quebec",
+        "Saskatchewan",
+    ];
+
+    res.render('pages/profile/profile', { title: 'Profile', layout: 'layouts/profile', profile, spells, provinces });
+};
 
 
 
 module.exports = {
-     addProfile,
-     getProfileSpells
+    addProfile,
+    getProfile
 }

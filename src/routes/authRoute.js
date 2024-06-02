@@ -24,8 +24,15 @@ authRouter.post('/register', authController.register);
 authRouter.post('/login', authController.login);
 
 authRouter.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
-}); 
+    // Clear the JWT token from cookies
+    res.clearCookie('token');
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Session destruction error:', err);
+            return res.status(500).send('Logout failed. Please try again.');
+        }
+        res.redirect('/');
+    });
+});
 
 module.exports = authRouter;

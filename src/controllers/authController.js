@@ -2,6 +2,8 @@ require('dotenv').config();
 const authService = require('../services/authService');
 const validate = require('../utils/validationUtil');
 const userService = require('../services/userService');
+const jwtUtil = require('../utils/jwtUtil');
+
 
 // Controller Method for registering a user
 const register = async (req, res) => {
@@ -34,17 +36,25 @@ const login = async (req, res) => {
      const data = req.body;
      try {
           const user = await userService.authenticate(data);
-          if (user) {
-               req.session.user = user;
-               req.session.loggedIn = true;
-               req.session.userId = user.userId;
-               res.redirect(302, '/profile/profile');
-          } else {
-               res.status(401).render('auth/login', { error: 'Invalid email or password' });
-          }
+
+          if (!user) {
+               return res.status(401).send('Invalid credentials');
+           }
+
+           const token = jwtUtil.generateToken(user);
+           
+           // Set the token in the cookies
+           res.cookie('token', token, { httpOnly: true });
+          // Set session variable
+           req.session.userId = user.id;
+           req.session.loggedIn = true;
+
+           res.redirect('/profile/profile');
+
+
      } catch (error) {
-          console.error("Login error:", error);
-          res.status(500).send('Internal Server Error');
+          console.error('Login error:', error);
+          res.status(500).send('Login failed. Please try again.');
      }
 };
 
