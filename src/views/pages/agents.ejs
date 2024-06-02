@@ -1,0 +1,54 @@
+<section class="h-full mx-[10vw] mb-10">
+	<div class="mt-2 text-center">
+		<p class="text-4xl subpixel-antialiased font-bold"
+			>Meet Our Staff</p
+		>
+		<p class="mt-2 antialiased">With over 10000 years of experience</p>
+	</div>
+
+	<!-- Mobile View -->
+
+	<div class="flex flex-col gap-3">
+          <% agents.forEach(agent => { %>
+          <div class="shadow-xl max-w-screen card bg-base-100 lg:hidden">
+               <figure class="px-10 pt-10">
+                    <img
+                         src="<%= agent.image %>"
+                         alt="<%= agent.name %>"
+                         class="rounded-xl" />
+               </figure>
+               <div class="items-center text-center card-body">
+                    <h2 class="card-title"><%= agent.name %></h2>
+                         <p class="font-semibold text-red-500"><%= agent.position %></p>
+                    <p class="text-blue-500"><%= agent.email %></p>
+                         <p class="antialiased text-gray-800"><%= agent.phone %></p>
+                         <p><%= agent.address %></p>
+               </div>
+          </div>
+          <% }) %>
+     </div>
+
+	<!-- Desktop View -->
+	<div class="flex-wrap justify-center hidden gap-3 mt-3 lg:flex">
+		<% agents.forEach(agent => { %>
+		<div class="max-w-md shadow-xl card card-side bg-base-300">
+			<figure
+				><img
+					src="<%= agent.image %>"
+					alt="<%= agent.name %>"
+					class="p-3 transition-all rounded-lg hover:scale-125"
+			/></figure>
+			<div class="card-body">
+				<h2 class="card-title"><%= agent.name %></h2>
+				<p class="font-semibold text-red-500"><%= agent.position %></p>
+				<p
+					class="text-blue-500 cursor-pointer hover:text-blue-900"
+					><%= agent.email %></p
+				>
+				<p class="antialiased text-gray-800"><%= agent.phone %></p>
+				<p><%= agent.address %></p>
+			</div>
+		</div>
+		<% }) %>
+	</div>
+</section>

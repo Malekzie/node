@@ -1,45 +1,65 @@
 <div class="min-h-screen hero bg-base-200">
 	<!-- Hero -->
 	<div class="flex-col hero-content lg:flex-row-reverse">
-          <div class="text-center lg:text-left">
-               <img src="/assets/images/contact-bg.jpg" alt="contact background" class="absolute w-[85vw] h-[25vh] lg:hidden rounded-lg -z-50">
-			<h1 class="text-2xl font-bold lg:text-5xl">Contact Us!</h1>
-			<p class="py-6 text-sm antialiased">
-				Provident cupiditate voluptatem et in. Quaerat fugiat ut
-				assumenda excepturi exercitationem quasi. In deleniti eaque
-				aut repudiandae et a id nisi.
-			</p>
+		<div class="text-center lg:text-left">
+			<img
+				src="/assets/images/contact-bg.jpg"
+				alt="contact background"
+				class="absolute w-[93%] h-[25vh] lg:hidden rounded-lg -z-50" />
+                    <div class="max-w-lg">
+                         <h1 class="text-2xl font-bold text-white lg:text-5xl">Contact Us!</h1>
+                         <p class="py-6 text-sm antialiased text-white">
+                              Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                              assumenda excepturi exercitationem quasi. In deleniti
+                              eaque aut repudiandae et a id nisi.
+                         </p>
+                    </div>
 		</div>
 
 		<!-- Form -->
 		<div class="w-full max-w-sm shadow-2xl card bg-base-100">
-               <form action="" class="card-body" method="post">
-                    <div class="form-control">
-                         <label for="label">
-                              <p class="label-text">First Name</p>
-                         </label>
-                         <input type="text" name="contactName" class="input input-xs lg:input-sm input-bordered" required/>
-                    </div>
-                    <div class="form-control">
-                         <label for="label">
-                              <p class="label-text">Last Name</p>
-                         </label>
-                         <input type="text" name="contactLastName" class="input input-xs lg:input-sm input-bordered" required/>
-                    </div>
-                    <div class="form-control">
-                         <label for="label">
-                              <p class="label-text">Email</p>
-                         </label>
-                         <input type="email" name="contactEmail" class="input input-xs lg:input-sm input-bordered" required/>
-                    </div>
-                    <div class="form-control">
-                         <label for="label">
-                              <p class="label-text ">Message</p>
-                         </label>
-                         <textarea name="contactMessage" class="h-24 textarea textarea-bordered" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Submit</button>
-               </form>
-          </div>
+			<form action="" class="card-body" method="post">
+				<div class="form-control">
+					<label for="label">
+						<p class="label-text">First Name</p>
+					</label>
+					<input
+						type="text"
+						name="contactName"
+						class="input input-xs lg:input-sm input-bordered"
+						required />
+				</div>
+				<div class="form-control">
+					<label for="label">
+						<p class="label-text">Last Name</p>
+					</label>
+					<input
+						type="text"
+						name="contactLastName"
+						class="input input-xs lg:input-sm input-bordered"
+						required />
+				</div>
+				<div class="form-control">
+					<label for="label">
+						<p class="label-text">Email</p>
+					</label>
+					<input
+						type="email"
+						name="contactEmail"
+						class="input input-xs lg:input-sm input-bordered"
+						required />
+				</div>
+				<div class="form-control">
+					<label for="label">
+						<p class="label-text">Message</p>
+					</label>
+					<textarea
+						name="contactMessage"
+						class="h-24 textarea textarea-bordered"
+						required></textarea>
+				</div>
+				<button type="submit" class="btn">Submit</button>
+			</form>
+		</div>
 	</div>
 </div>

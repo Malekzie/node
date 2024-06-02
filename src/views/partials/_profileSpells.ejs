@@ -1,0 +1,13 @@
+<% spells.forEach(spell => { %>
+     <div>
+         <h2><%= spell.title %></h2>
+         <p><%= spell.description %></p>
+         <p>Power Level: <%= spell.powerLevel %></p>
+         <p>Element: <%= spell.element %></p>
+         <a href="/spells/edit/<%= spell.id %>">Edit</a>
+         <form action="/spells/delete/<%= spell.id %>" method="post">
+             <button type="submit">Delete</button>
+         </form>
+     </div>
+ <% }) %>
+ 

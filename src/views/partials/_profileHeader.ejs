@@ -9,9 +9,9 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li><a class="link link-hover" href="/contact">Contact Us</a></li>
         <li>
-          <a class="link link-hover" href="/agents">Agents</a>
+          <a class="link link-hover">I'm a simple link</a>
         </li>
-        <li><a class="link link-hover" href="/archives">Archives</a></li>
+        <li><a class="link link-hover">I'm a simple link</a></li>
       </ul>
     </div>
     <a class="text-md lg:text-xl btn btn-ghost" href="/">Arcane Archives</a>
@@ -36,12 +36,13 @@
   <div class="hidden navbar-center lg:flex">
     <ul class="px-1 menu menu-horizontal">
       <li><a class="link link-hover" href="/contact">Contact Us</a></li>
-      <li><a class="link link-hover" href="/agents">Agents</a>
-      </li>
-      <li><a class="link link-hover" href="/archives">Archives</a></li>
+      <li><a class="link link-hover" href="/agents">Agents</a></li>
+      <li><a class="link link-hover" href="/archives">Archive</a></li>
     </ul>
   </div>
   <div class="navbar-end">
-    <a class="btn" href="/profile/profile">Profile</a>
+    <form action="/auth/logout">
+      <button class="btn btn-error" type="submit">Logout</button>
+    </form>
   </div>
 </div>
