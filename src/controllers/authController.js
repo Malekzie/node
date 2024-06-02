@@ -37,6 +37,7 @@ const login = async (req, res) => {
           if (user) {
                req.session.user = user;
                req.session.loggedIn = true;
+               req.session.userId = user.userId;
                res.redirect(302, '/profile/profile');
           } else {
                res.status(401).render('auth/login', { error: 'Invalid email or password' });

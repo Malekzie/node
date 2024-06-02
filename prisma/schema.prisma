@@ -19,7 +19,7 @@ model User {
   password    String
   theme       String        @default("luxury")
   UserProfile UserProfile[]
-  Records     Records[]
+  Spells      SpellBook[]
 }
 
 model UserProfile {
@@ -31,29 +31,33 @@ model UserProfile {
   city      String?
   province  String?
   postal    String?
-  userId    String?
-  user      User?   @relation(fields: [userId], references: [id])
+  userId    String
+  user      User   @relation(fields: [userId], references: [id])
 }
 
 model Agents {
-  id        String    @id @default(cuid())
+  id        String      @id @default(cuid())
   image     String?
   name      String
   position  String
   email     String
   phone     String
   address   String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  Records   Records[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Spells    SpellBook[]
 }
 
-model Records {
-  id        Int      @id @default(autoincrement())
-  image     String?
-  author    String
-  title     String
-  content   String
+model SpellBook {
+  id          Int     @id @default(autoincrement())
+  image       String?
+  author      String
+  title       String
+  description String
+  powerLevel  Int
+  element     String
+
+  // Relationships
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String?

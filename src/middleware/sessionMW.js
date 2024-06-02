@@ -24,8 +24,16 @@ const saveTheme = async (req, res, next) => {
      next();
  };
 
+ const ensureAuthenticated = (req, res, next) => {
+     if (req.session.userId) {
+          return next();
+     }
+     res.redirect('/auth/login');
+ }
+
 module.exports ={
      sessionMW,
      loggedInMW,
-     saveTheme
+     saveTheme,
+     ensureAuthenticated
 }

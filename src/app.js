@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const expressLayouts = require('express-ejs-layouts');
 const { loggedInMW, sessionMW, saveTheme } = require('./middleware/sessionMW');
 
+
+
 const app = express();
 
 // Set EJS as the view engine
@@ -18,6 +20,8 @@ app.set("layout extractScripts", true)
 
 // Middleware to serve static files
 app.use('/assets', express.static(path.join(__dirname, '../public/assets')));
+app.use('/img', express.static(path.join(__dirname, '../public/assets/images'),
+{ extensions: ['jpg', 'png', 'gif'] }));
 
 // Middleware to parse request body
 app.use(express.json());
@@ -47,6 +51,37 @@ app.get('/', (req, res) => {
 app.get('/contact', (req, res) => {
       const theme = req.session.theme || 'default';
     res.render('pages/contact', { title: 'Contact', theme });
+});
+
+
+const agentRepository = require('./repositories/agentsRepository');
+app.get('/agents', async(req, res) => {
+    const agents = await agentRepository.findAgent();
+
+    const theme = req.session.theme || 'default';
+    res.render('pages/agents', { title: 'Agents', theme, agents });
+});
+
+const elements = [
+    'Fire',
+    'Water',
+    'Air',
+    'Earth',
+    'Light',
+    'Darkness',
+    'Electricity',
+    'Ice',
+    'Metal',
+    'Nature',
+    'Poison',
+    'Shadow',
+    'Sound',
+    'Time'
+]
+app.get('/archives', (req, res) => {
+    const userId = req.session.userId;
+      const theme = req.session.theme || 'default';
+    res.render('pages/archives', { title: 'About', theme, userId, elements });
 });
 
 

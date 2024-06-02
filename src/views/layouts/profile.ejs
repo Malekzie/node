@@ -29,28 +29,6 @@
            });
            document.documentElement.setAttribute('data-theme', theme); // Update the theme immediately
        });
-       // Javascript that gets cities based on selected province
-			document
-			.getElementById('city')
-			.addEventListener("change", async function() {
-				const province = this.value;
-				const response = await fetch('https://countriesnow.space/api/v0.1/countries/state/cities',{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({ country: 'Canada', state: province })
-				});
-				const cities = await response.json();
-				const citySelect = document.getElementById('city');
-				citySelect.innerHTML = '';
-				cities.forEach(city => {
-					const option = document.createElement('option');
-					option.value = city;
-					option.textContent = city;
-					citySelect.appendChild(option);
-				});
-			})
  </script>
 </body>
 </html>

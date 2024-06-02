@@ -6,7 +6,11 @@ const authenticate = async (data) => {
     try {
         const user = await userRepository.findUserByEmail(data.email);
         if (user && await argon2.verify(user.password, data.password)) {
-            return user;
+            const userId = user.id;
+            return {
+                user,
+                userId
+            }
         } else {
             return null;
         }
@@ -16,20 +20,20 @@ const authenticate = async (data) => {
     }
 };
 
-const populateProfile = async (data) => {
-     const user = await userRepository.findUserById(data.id);
+const populateProfile = async (data, id) => {
+     const user = await userRepository.findUserById(id);
      if (user) {
-          throw new Error('User already exists');
+         const profileData = {
+              firstName: data.firstName,
+              lastName: data.lastName,
+              address: data.address,
+              city: data.city,
+              province: data.province,
+              userId: id,
+         }
+         return profileRepository.createUserProfile(profileData);
      }
 
-     const profileData = {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          address: data.address,
-          city: data.city,
-          province: data.province,
-     }
-     return profileRepository.createUser(profileData);
 }
 
 module.exports = { 

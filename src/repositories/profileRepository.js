@@ -20,7 +20,15 @@ const findProfilesByCity = async (city) => {
 
 const createUserProfile = async (data) => {
      return await db.userProfile.create({
-          data
+          data: {
+               firstName: data.firstName,
+               lastName: data.lastName,
+               address: data.address,
+               city: data.city,
+               province: data.province,
+               phone: data.phone,
+               postal: data.postal
+          }
      });
 }
 
