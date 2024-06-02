@@ -1,7 +1,7 @@
 <div class="flex flex-wrap gap-3">
     <% spells.forEach(spell => { %>
         <div class="shadow-xl card card-compact w-96 bg-base-300">
-            <figure><img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+            <figure><img src="<%= spell.image %>" alt="<%= spell.element %>" /></figure>
             <div class="card-body">
                 <h2 class="card-title"><%= spell.title %></h2>
                 <div class="p-2 rounded-lg bg-base-100">
