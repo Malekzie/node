@@ -1,23 +1,29 @@
 <div class="flex flex-wrap gap-3">
-    <% spells.forEach(spell => { %>
-        <div class="shadow-xl card card-compact w-96 bg-base-300">
-            <figure><img src="<%= spell.image %>" alt="<%= spell.element %>" /></figure>
-            <div class="card-body">
-                <h2 class="card-title"><%= spell.title %></h2>
-                <div class="p-2 rounded-lg bg-base-100">
-                    <p>Element: <%= spell.element %></p>
-                    <p>Power Level: <%= spell.powerLevel %></p>
-                    <div class="p-2 text-center border rounded-lg">
-                        <p><%= spell.description %></p>
+    <% if (spells.length === 0) { %>
+        <div class="w-full text-center">
+            <p class="text-lg text-gray-600">No spells found. Create a new spell to get started!</p>
+        </div>
+    <% } else { %>
+        <% spells.forEach(spell => { %>
+            <div class="shadow-xl card card-compact w-96 bg-base-300">
+                <figure><img src="<%= spell.image %>" alt="<%= spell.element %>" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title"><%= spell.title %></h2>
+                    <div class="p-2 rounded-lg bg-base-100">
+                        <p>Element: <%= spell.element %></p>
+                        <p>Power Level: <%= spell.powerLevel %></p>
+                        <div class="p-2 text-center border rounded-lg">
+                            <p><%= spell.description %></p>
+                        </div>
+                    </div>
+                    <div class="flex justify-evenly">
+                        <a href="/spells/edit/<%= spell.id %>" class="btn btn-secondary">Edit</a>
+                        <form action="/spells/delete/<%= spell.id %>" method="post">
+                            <button type="submit" class="btn btn-error">Delete</button>
+                        </form>
                     </div>
                 </div>
-                <div class="flex justify-evenly">
-                    <a href="/spells/edit/<%= spell.id %>" class="btn btn-secondary">Edit</a>
-                    <form action="/spells/delete/<%= spell.id %>" method="post">
-                        <button type="submit" class="btn btn-error">Delete</button>
-                    </form>
-                </div>
             </div>
-        </div>
-    <% }) %>
+        <% }) %>
+    <% } %>
 </div>
