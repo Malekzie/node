@@ -1,19 +1,26 @@
-<main class="h-screen">
-     <% if (loggedIn) { %>
-         <%- include('../partials/_archiveModal') %>
+<main class="h-full">
+	<% if (loggedIn) { %> 
+          <%- include('../partials/_archiveModal') %> 
      <% } %>
-     <section>
-          <div class="flex justify-center">
-               <h1 class="text-4xl font-bold">Archives</h1>
-          </div>
-          <% spells.forEach(spell => { %>
-               <div>
-                   <h2><%= spell.title %></h2>
-                   <p><%= spell.description %></p>
-                   <p>Power Level: <%= spell.powerLevel %></p>
-                   <p>Element: <%= spell.element %></p>
-                   <p>Author: <%= spell.author %></p>
-               </div>
-           <% }) %>
-     </section>
+	<section>
+		<div class="flex justify-center">
+			<h1 class="text-4xl font-bold">Archives</h1>
+		</div>
+		<div class="flex flex-wrap justify-center gap-5">
+		<% spells.forEach(spell => { %>
+			<div class="shadow-xl card w-96 bg-base-100">
+				<figure class="px-10 pt-10">
+                              <img src="<%= spell.image %>" alt="Spell Image" class="rounded-xl" />
+                         </figure>
+				<div class="items-center text-center card-body">
+					<h2 class="card-title"><%= spell.title %></h2>
+					<p>Author: <%= spell.author %></p>
+					<p>Element: <%= spell.element %></p>
+					<p>Power Level: <%= spell.powerLevel %></p>
+					<p><%= spell.description %></p>
+				</div>
+			</div>
+               <% }) %>
+		</div>
+	</section>
 </main>
